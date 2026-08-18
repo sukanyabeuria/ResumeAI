@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ---------------------------------------------------------------------------
+   Dreamy "pookie" pink + purple page background.
+   Soft pink → lavender gradient with subtle purple tones, fixed to the
+   viewport so the wash stays consistent while the page scrolls.
+--------------------------------------------------------------------------- */
+body {
+  background: linear-gradient(
+    160deg,
+    #fdf2f8 0%,
+    #fce8f3 20%,
+    #f9e4f8 38%,
+    #f3e8fe 62%,
+    #ece9fe 82%,
+    #e8e3ff 100%
+  );
+  background-attachment: fixed;
+  @apply text-slate-800 antialiased;
+}
+
+::selection {
+  @apply bg-pink-200 text-pink-900;
+}
+
+/* Toast entrance (used by the "Changes saved" notification). */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.toast-in {
+  animation: toast-in 0.25s ease-out;
+}
+
+/* ---------------------------------------------------------------------------
+   Dreamy background effects
+--------------------------------------------------------------------------- */
+
+/* Soft glowing blobs — slow, gentle drift. */
+@keyframes blob-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(26px, -20px, 0) scale(1.07);
+  }
+  66% {
+    transform: translate3d(-20px, 16px, 0) scale(0.96);
+  }
+}
+.animate-blob {
+  animation: blob-drift 16s ease-in-out infinite;
+}
+
+/* Tiny twinkling sparkle particles. */
+@keyframes sparkle-twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: translateY(0) scale(0.7);
+  }
+  50% {
+    opacity: 0.95;
+    transform: translateY(-12px) scale(1.15);
+  }
+}
+.sparkle {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(249, 168, 212, 0.9) 55%,
+    transparent 78%
+  );
+  box-shadow:
+    0 0 10px 2px rgba(244, 114, 182, 0.5),
+    0 0 24px 8px rgba(192, 132, 252, 0.35);
+  animation: sparkle-twinkle 3.6s ease-in-out infinite;
+}
+.sparkle-purple {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(196, 181, 253, 0.9) 55%,
+    transparent 78%
+  );
+  box-shadow:
+    0 0 10px 2px rgba(168, 85, 247, 0.45),
+    0 0 24px 8px rgba(216, 180, 254, 0.4);
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob,
+  .sparkle {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Print styles — "Download PDF" uses window.print().
+   Only the resume inside #resume-print-area is printed.
+--------------------------------------------------------------------------- */
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  /* Keep the template colors when printing. */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  /* Hide the dreamy background completely when printing. */
+  #dreamy-background {
+    display: none !important;
+  }
+
+  #resume-print-area,
+  #resume-print-area * {
+    visibility: visible;
+  }
+
+  #resume-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+}
