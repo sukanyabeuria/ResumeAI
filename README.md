@@ -57,6 +57,7 @@ ResumeAI includes multiple resume designs:
 
 ## Project Structure
 
+
 ```text
 ResumeAI/
 │
