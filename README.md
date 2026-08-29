@@ -13,7 +13,6 @@ Users can enter their personal information, education, skills, experience, proje
 ## Features
 
 
-
 - AI-powered resume generation
 - Multiple professional resume templates
 - Easy-to-use resume builder
