@@ -50,6 +50,7 @@ ResumeAI includes multiple resume designs:
 - Vite
 - CSS
 
+
 ### Development Tools
 - Git
 - GitHub
