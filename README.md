@@ -9,6 +9,7 @@ An AI-powered resume builder that helps users create professional resumes quickl
 
 ResumeAI is a web application designed to make resume creation simple and fast.
 
+
 Users can enter their personal information, education, skills, experience, projects, and other details. The application organizes the information into professional resume templates that can be customized for different career needs.
 
 ## Features
